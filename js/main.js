@@ -348,7 +348,7 @@
     const ui = (on) => {
       mBtn.classList.toggle("is-playing", on);
       mBtn.setAttribute("aria-pressed", String(on));
-      mLabel.textContent = on ? "Pause music" : "Play our song";
+      mLabel.textContent = on ? "Pause" : "Play";
     };
     audio.addEventListener("play", () => ui(true));
     audio.addEventListener("pause", () => ui(false));
