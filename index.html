@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Us</title>
+  <meta name="description" content="A little corner of the internet that belongs to the two of us.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#1a2039">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="config.js"></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#story">Skip to our story</a>
+
+  <!-- Optional secret-question lock (turned on in config.js) -->
+  <div class="lock" id="lock" hidden>
+    <form class="lock-card" id="lock-form" autocomplete="off">
+      <h2 class="lock-title">Just for you</h2>
+      <label class="lock-q" for="lock-answer" data-bind="lockQuestion"></label>
+      <input class="lock-input" id="lock-answer" name="answer" type="text" autocapitalize="none" spellcheck="false" required aria-describedby="lock-msg">
+      <button class="btn btn-wide" type="submit">Open</button>
+      <p class="lock-msg" id="lock-msg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+
+  <main id="top">
+    <header class="bar">
+      <a class="mono" href="#top" aria-label="Back to the top" data-bind="initials"></a>
+      <nav class="bar-links" aria-label="Sections">
+        <a href="#story">Our story</a>
+        <a href="#photos">Photos</a>
+        <a href="#reasons">Reasons</a>
+      </nav>
+      <a class="btn" href="#letter">Read the letter</a>
+    </header>
+
+    <!-- 1. The card -->
+    <section class="hero" aria-labelledby="names">
+      <div class="card">
+        <h1 class="names" id="names">
+          <span class="names-a" data-bind="nameA"></span>
+          <span class="names-b" data-bind="nameB"></span>
+        </h1>
+        <p class="hero-line" data-bind="heroLine"></p>
+        <p class="hero-meta">
+          <span data-bind="sinceLine"></span>
+          <span class="diamond" aria-hidden="true"></span>
+          <span data-bind="firstPlace"></span>
+        </p>
+
+        <div class="counter" role="timer" aria-label="Time we've been together">
+          <div class="counter-cell"><span class="counter-num" data-count="days">0</span><span class="counter-unit">days</span></div>
+          <div class="counter-cell"><span class="counter-num" data-count="hours">0</span><span class="counter-unit">hours</span></div>
+          <div class="counter-cell"><span class="counter-num" data-count="minutes">0</span><span class="counter-unit">minutes</span></div>
+          <div class="counter-cell"><span class="counter-num" data-count="seconds">0</span><span class="counter-unit">seconds</span></div>
+        </div>
+
+        <nav class="card-links" aria-label="Sections">
+          <a href="#story">Our story</a>
+          <a href="#photos">Photos</a>
+          <a href="#reasons">Reasons</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- 2. Intro + facts -->
+    <section class="intro" aria-labelledby="intro-h">
+      <div class="intro-top">
+        <h2 class="intro-h reveal" id="intro-h" data-bind="introHeading"></h2>
+        <p class="intro-note reveal" data-bind="introNote"></p>
+      </div>
+      <dl class="facts" id="facts"></dl>
+    </section>
+
+    <!-- 3. Story -->
+    <section class="story" id="story" aria-labelledby="story-h">
+      <div class="story-stage">
+        <h2 class="section-h reveal" id="story-h">Our story</h2>
+        <ol class="deck" id="deck"></ol>
+      </div>
+    </section>
+
+    <!-- 4. Photos -->
+    <section class="photos" id="photos" aria-labelledby="photos-h">
+      <h2 class="section-h reveal" id="photos-h">Our photos</h2>
+      <ul class="tiles" id="tiles"></ul>
+    </section>
+
+    <!-- 5. Reasons (tap for another) -->
+    <section class="reasons" id="reasons" aria-labelledby="reasons-h">
+      <div class="reasons-side">
+        <h2 class="section-h reveal" id="reasons-h">Why you</h2>
+        <p class="reasons-note reveal" id="reasons-note"></p>
+        <button class="btn" type="button" id="reason-next">Another reason</button>
+      </div>
+      <div class="reason-stack" aria-live="polite">
+        <div class="reason-back reason-back-2" aria-hidden="true"></div>
+        <div class="reason-back reason-back-1" aria-hidden="true"></div>
+        <blockquote class="reason-card" id="reason-card"><p id="reason-text"></p></blockquote>
+      </div>
+    </section>
+
+    <!-- 6. The letter -->
+    <section class="letter-wrap" id="letter" aria-labelledby="letter-h">
+      <h2 class="visually-hidden" id="letter-h">A letter</h2>
+      <article class="letter reveal">
+        <div class="letter-body" id="letter-body"></div>
+        <p class="letter-sign" data-bind="signOff"></p>
+      </article>
+      <div class="coupon-wrap reveal">
+        <div class="coupon-stub" aria-hidden="true"></div>
+        <div class="coupon">
+          <p class="coupon-text" data-bind="coupon"></p>
+          <button class="coupon-btn" type="button" id="coupon-btn" aria-pressed="false">Redeem</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 8. The back of the card (revealed as the page lifts away) -->
+  <footer class="back">
+    <div class="postcard">
+      <div class="postcard-left">
+        <h2 class="postcard-h" data-bind="footerSignOff"></h2>
+        <p class="postcard-msg" data-bind="footerMessage"></p>
+      </div>
+      <div class="postcard-right">
+        <img class="stamp" id="stamp" alt="" width="88" height="117" loading="lazy">
+        <ul class="postcard-lines" id="postcard-lines"></ul>
+      </div>
+      <p class="imprint" data-bind="imprint"></p>
+    </div>
+  </footer>
+
+  <!-- Music (set it up in config.js) -->
+  <button class="music" id="music" type="button" aria-pressed="false" hidden>
+    <span class="music-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+    <span class="music-label" id="music-label">Play our song</span>
+  </button>
+  <audio id="audio" preload="auto" loop></audio>
+
+  <noscript><p class="noscript">This page needs JavaScript turned on to show our story.</p></noscript>
+</body>
+</html>
