@@ -535,7 +535,7 @@ body.is-locked { overflow: hidden; }
   .back { padding: 96px 0 0; }
   .postcard {
     --sc: 30px;
-    grid-template-columns: 1fr; padding: calc(40px + var(--sc)) 24px 24px; gap: 32px;
+    grid-template-columns: 1fr; padding: calc(40px + var(--sc)) 24px 96px; gap: 32px;
   }
   .postcard-right { align-items: stretch; }
   .stamp { position: absolute; top: calc(var(--sc) + 24px); right: 24px; width: 64px; }
